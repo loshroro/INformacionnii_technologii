@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCR</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header class="main-header">
+            <a href="https://www.sut.ru" class="navbar_logo-link">
+                <img class="contact__info-icon" width="200" alt="PP" src="{{url_for('static', filename='sut.svg')}}">
+            </a>
+            <a href="https://lk.sut.ru/cabinet/?login=yes" class="navbar_logo-link">
+                <img class="contact__info-icon" width="75" alt="PP"  src="{{url_for('static', filename='sutlk.svg')}}">
+            </a>
+            <nav class="navbar">
+                <a class="nav__link" href="/pr1/zadanie1" style="color: white">Практика 1</a>
+                <a class="nav__link" href="/pr2/zadanie1" style="color: white">Практика 2</a>
+                <a class="nav__link" href="/pr3/zadanie1" style="color: white">Практика 3</a>
+                <a class="nav__link" href="/pr4/zadanie1" style="color: white">Практика 4</a>
+                <a class="nav__link" href="/pr5/zadanie1" style="color: white">Практика 5</a>
+                <a class="nav__link" href="/pr6/zadanie1" style="color: white">Практика 6</a>
+                <a class="nav__link" href="/pr7/zadanie1" style="color: white">Практика 7</a>
+                <a class="nav__link" href="/pr8/zadanie1" style="color: white">Практика 8</a>
+                <a class="nav__link" href="/pr9/zadanie1" style="color: white">Практика 9</a>
+            </nav>   
+            <div class="name">аккаунт: {{ user.login }}</div>
+    </header>
+    <div class="main-container">
+        <aside class="sidebar1">
+            <div>
+            </div>
+            <div class="bottom-div" >
+                <a class="nav__linkexit" href="/logout">Выйти из аккаунта</a>
+            </div>
+        </aside>
+        <main class="main-content">
+    <div class="form__group">
+        <h1 class="text-center">Python Code Runner</h1>
+        <h2>Добро пожаловать на сайт для сдачи практик по профильному предмету "Языки программирования" </h2>
+        <h2>Здесь вы научитесь базовым знаниям Python</h2>
+        <h2></h2>
+
+    </div>
+        </main>
+    </div>
+</body>
+</html>

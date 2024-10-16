@@ -1,0 +1,37 @@
+<html>
+<head>
+	<title>Авторизация</title>
+	<link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="registration-cssave">
+    <form method="POST">
+	<header class="header1" >>
+			<div class="user">
+				<h1 style="color:rgb(190, 124, 1);"><em><strong>Python Code Runner</strong></em></h1>
+      </div>
+	</header>
+        <h3 class="text-center">Вход на сайт</h3>
+        <div class="form-group">
+            <input class="form-control" type="text" name="login" maxlength="10"  placeholder="Введите логин" required>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="password" maxlength="50" placeholder="Введите пароль" required>
+        </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+        <div class="button-container">
+          <button  type="submit" class="nav__link1 nav__link--btn">Авторизация</button>
+          <a class="nav__link1 nav__link--btn1" href="{{ url_for('register') }}">Регистрация</a>
+      </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCR/pr1</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header class="main-header">
+            <a href="https://www.sut.ru" class="navbar_logo-link">
+                <img class="contact__info-icon" width="200" alt="PP" src="{{url_for('static', filename='sut.svg')}}">
+            </a>
+            <a href="https://lk.sut.ru/cabinet/?login=yes" class="navbar_logo-link">
+                <img class="contact__info-icon" width="75" alt="PP"  src="{{url_for('static', filename='sutlk.svg')}}">
+            </a>
+            <nav class="navbar">
+                <a class="nav__link active" href="/pr1/zadanie1" style="color: white">Практика 1</a>
+                <a class="nav__link" href="/pr2/zadanie1" style="color: white">Практика 2</a>
+                <a class="nav__link" href="/pr3/zadanie1" style="color: white">Практика 3</a>
+                <a class="nav__link" href="/pr4/zadanie1" style="color: white">Практика 4</a>
+                <a class="nav__link" href="/pr5/zadanie1" style="color: white">Практика 5</a>
+                <a class="nav__link" href="/pr6/zadanie1" style="color: white">Практика 6</a>
+                <a class="nav__link" href="/pr7/zadanie1" style="color: white">Практика 7</a>
+                <a class="nav__link" href="/pr8/zadanie1" style="color: white">Практика 8</a>
+                <a class="nav__link" href="/pr9/zadanie1" style="color: white">Практика 9</a>
+            </nav>
+            <div class="name">аккаунт: {{ user.login }}</div>
+    </header>
+    <div class="main-container">
+        <aside class="sidebar">
+            <div>
+                <button class="sidebar-btn" onclick="window.location.href='/'">Главная</button>
+                <button id="pr1task1-btn" class="sidebar-btn {% if task_status[1] %}completed{% endif %}" onclick="window.location.href='/pr1/zadanie1'">Задание 1</button>
+                <button id="pr1task2-btn" class="sidebar-btn {% if task_status[2] %}completed{% endif %}" onclick="window.location.href='/pr1/zadanie2'">Задание 2</button>
+                <button id="pr1task3-btn" class="sidebar-btn {% if task_status[3] %}completed{% endif %}" onclick="window.location.href='/pr1/zadanie3'">Задание 3</button>
+                <button id="pr1task4-btn" class="sidebar-btn {% if task_status[4] %}completed{% endif %}" onclick="window.location.href='/pr1/zadanie4'">Задание 4</button>
+                <button id="pr1task5-btn" class="sidebar-btn {% if task_status[5] %}completed{% endif %}" onclick="window.location.href='/pr1/zadanie5'">Задание 5</button>
+            </div>
+            <div class="bottom-div" >
+                <a class="nav__linkexit" href="/logout">Выйти из аккаунта</a>
+            </div>
+        </aside>
+        <main class="main-content">
+    <div class="form__group">
+        <h1>Задание 2</h1>
+        <div class="textarea-container">
+            <textarea class="form__textarea" style="font-size: 20px; max-height: 145px;" rows="5" cols="60" wrap="off" readonly>Напишите программу, которая запрашивает у пользователя две строки и определяет, какая из них длиннее. Выведите на экран длину самой длинной строки. Вводите строки через какой-нибудь символ, после чего используйте split.(Строки:"Привет, что делаешь завтра?","Как мне получить экзамен по Языкам программирования?")</textarea>
+        </div>
+        <textarea class="form__textarea" style="font-size: 16px;" id="code" rows="20" cols="50" wrap="off" placeholder="Введите свой код здесь..."></textarea>
+        <textarea class="form__textarea" style="font-size: 16px;" id="input" rows="1" cols="50" wrap="off" placeholder="Введите данные для input()..."></textarea>
+        <button class="nav__link--btn" onclick="runCode()">Запустить код</button>
+        <pre class="form__textout" id="output" style="color: white"></pre>
+        <pre class="form__textout" id="error" style="color: red;"></pre>
+    </div>
+</main>
+</div>
+<script>
+    async function runCode() {
+        const code = document.getElementById('code').value;
+        const input = document.getElementById('input').value;
+
+        const response = await fetch('/run', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ code, input, task_number: 2 })
+        });
+
+        const result = await response.json();
+        document.getElementById('output').textContent = result.output;
+        document.getElementById('error').textContent = result.error;
+        if (result.success && result.task_completed) {
+            document.getElementById('pr1task2-btn').classList.add('completed');
+        }
+    }
+</script>
+</body>
+</html>
